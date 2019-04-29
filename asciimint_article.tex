@@ -1,12 +1,12 @@
 
 \input{config.tex}
 \PassOptionsToPackage{authoryear}{natbib}
-\documentclass[b5paper,nobib,justified,notoc,table]{tufte-handout}%notoc = my style!
+\documentclass[a4paper,nobib,justified,notoc,table]{tufte-handout}%b5paper %notoc = my style!
 \usepackage{asciimint}
 
 
 %We only accept PDF! (then PNG!)
-\DeclareGraphicsExtensions{.pdf,.png}
+\DeclareGraphicsExtensions{.pdf}%,.png
 
 %----------------------
 % Font Specifications
@@ -15,12 +15,13 @@
     \RequirePackage[cmintegrals,cmbraces]{newtxmath}
     \RequirePackage{ebgaramond-maths}  
     \defaultfontfeatures{Mapping=tex-text, Numbers=Lining}   
-    \setmainfont{EB Garamond}%lining vs OldStyle
+    \setmainfont[Contextuals=NoAlternate]{EB Garamond}%lining vs OldStyle
     \setsansfont{Gill Sans}[BoldFont={* Bold}]  
 \else
     \RequirePackage[lining]{ebgaramond}
     \RequirePackage[cmintegrals,cmbraces]{newtxmath}
-    \RequirePackage[lining]{ebgaramond-maths}   
+    \RequirePackage{ebgaramond-maths}   %[lining]
+	\RequirePackage{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif    
 \fi
 
 
@@ -88,7 +89,9 @@
 	% \endnotetext[2]{shahryar@eivazzadeh.com} 
 
 %% References with BibTeX database:
+	%MAGICBEGINSRC
 	% \bibliographystyle{\bibliographyStyle} % plainnat
+	%MAGICENDSRC
 	% \bibliography{MAGICPLACEHOLDERBIB}
 
 \end{document}

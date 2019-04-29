@@ -2,7 +2,7 @@
 %Shahryar Graphics package, configuration of graphics and tikz  things
 %-----------------------------------------------
 
-\ProvidesPackage{asciimint_graphics}[2015/09/18 Shahryar]
+\ProvidesPackage{my_graphics_v2}[2015/09/18 Shahryar]
 
 \newcommand{\mylegendsize}{\scriptsize}
 
@@ -11,71 +11,8 @@
 %----------------------
 
 
-%Detect Pdftex or Xelatex or Luatex
-\RequirePackage{ifpdf}
-\RequirePackage{ifxetex}
-\RequirePackage{ifluatex}
-\newif\ifxetexorluatex
-\ifxetex
-  \xetexorluatextrue
-\else
-  \ifluatex
-    \xetexorluatextrue
-  \else
-    \xetexorluatexfalse
-  \fi
-\fi
-
-%IF Lua then some fixes are needed
-\ifluatex
-  \RequirePackage{shellesc}                % implement \write18
-  \RequirePackage{pdftexcmds}              % fake \pdfshellescape so
-  \makeatletter                            % standalone knows about it
-    \let\pdfshellescape\pdf@shellescape
-  \makeatother
-  \RequirePackage{luatex85}%remedy of luatex for standalone (for a while)
-\fi
 
 
-
-\RequirePackage{xcolor} %coloring things, including tables, lots of names here %pass option in the head [usenames,dvipsnames,svgnames,table][table]
-\RequirePackage{pagecolor} %should be after xcolor
-\RequirePackage{colorspace} %help xcolor with Panthon spotcolors
-%\RequirePackage{afterpage} %DOES not work Xelatex change color of only one
-
-
-%note: all said that there is no need for [pdftex]
-\RequirePackage{graphicx}%[pdftex]
-\DeclareGraphicsExtensions{.pdf,.png,.jpg}
-%\RequirePackage{auto-pst-pdf} %convert ps to pdf
-\usepackage{grfext}
-\PrependGraphicsExtensions*{.pdf,.PDF}%pdf to be first to include
-\graphicspath{ {./}{./_figures/}{../_figures/}{./_sh_my_figures_symlink/}{./_images_symlink/}{../_images/}{../../_images/}{../images/}{../../images/}}
-
-
-%if you need alpha and beta in text not in math
-\RequirePackage{textgreek} 
-
-
-
-%--------------------------------
-% Fonts
-%--------------------------------
-% \renewcommand\familydefault{\sfdefault} %set font to sans for all figures
-
-
-%--------------------------------
-% Tables
-%--------------------------------
-
-\RequirePackage{booktabs} %better tables
-\RequirePackage{tabularx} %better columns in tables
-\RequirePackage{longtable} %breakable tables across pages
-\RequirePackage{threeparttable} % tables with footnote part
-\RequirePackage{multirow}
-\RequirePackage{colortbl}%coloring the table
-\RequirePackage{array} %needed for some table things
-%\RequirePackage{tablefootnote} % facilities for footnote  in tables PROBLEMS!
 
 
 
@@ -83,11 +20,10 @@
 % C O L O R S
 %----------------------
 
-\definecolor{amGrayCMYK}{cmyk}{0.45,0.34,0.34,0}
 
 \definecolor{darkblue}{rgb}{0,0,0.5} 
 \definecolor{verylightgray}{gray}{0.95}
-\definecolor{lightgray}{gray}{0.83}
+\definecolor{lightgray}{gray}{0.8}
 \definecolor{histo1}{HTML}{acb3ca}%{7231A3} 
 \definecolor{histo2}{HTML}{bc9eb4}%{335EA1} 
 \definecolor{histo3}{HTML}{e6a6a7}%{F3CF3D} 
@@ -97,8 +33,6 @@
 \definecolor{tufteyellowCMYK}{cmyk}{0, 0.771, 0.715, 0.161}%RGB is #D6313D
 %\colorlet{plosbluegray}{lightgray!50!plostitle!20!white}
 \definecolor{plosbluegray}{cmyk}{0.13, 0.03, 0.05, 0}%Pantone Uncoated 5455 U
-\definecolor{redcrossred}{cmyk}{0.0, 0.95, 1.00, 0}%Pantone 485, RGB #ff0d00
-\colorlet{REDCROSSRED}{redcrossred}%some stupid commands change things to uppercase and cannot find the lowercase definition!
 \colorlet{myred}{tufteredCMYK}%red
 \colorlet{myblue}{blue}
 \colorlet{myyellow}{Dandelion}
@@ -164,20 +98,6 @@
 
 
 
-\RequirePackage{tikz}
-
-\usetikzlibrary{decorations,shapes,arrows.meta,patterns,trees,graphs,positioning,calc,datavisualization,fit,intersections,backgrounds,matrix,chains}
-
-
-\RequirePackage{tikz-qtree}% To create tree easily
-
-\RequirePackage{pgfplots} %creates charts and ...
-
-\pgfplotsset{compat=newest} %it means the minimum compatibility version 1.11
-
-
-\RequirePackage{pgfplotstable} %draws sophisticated table
-\usepgfplotslibrary{fillbetween}
 
 
 

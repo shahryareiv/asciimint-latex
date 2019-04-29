@@ -1,6 +1,5 @@
 
-
-\input{config.tex}
+% \input{config.tex}
 \PassOptionsToPackage{authoryear}{natbib}
 \documentclass[b5paper,nobib,justified,notoc,table]{tufte-book}%notoc = my style!
 \usepackage{asciimint}
@@ -11,17 +10,22 @@
 %----------------------
 % Font Specifications
 %----------------------
-\ifxetex%
+\ifxetexorluatex%
     \RequirePackage[cmintegrals,cmbraces]{newtxmath}
     \RequirePackage{ebgaramond-maths}  
     \defaultfontfeatures{Mapping=tex-text, Numbers=Lining}   
-    \setmainfont{EB Garamond}%lining vs OldStyle
+    \setmainfont[Contextuals=NoAlternate]{EB Garamond}%lining vs OldStyle
     \setsansfont{Gill Sans}[BoldFont={* Bold}]  
 \else
     \RequirePackage[lining]{ebgaramond}
     \RequirePackage[cmintegrals,cmbraces]{newtxmath}
     \RequirePackage{ebgaramond-maths}   
 \fi
+
+%----------------------
+% Layout Specifications
+%----------------------
+\setlength{\headheight}{24pt} %for long running titles
 
 % For A4 paper
 % \geometry{
@@ -68,12 +72,17 @@
 \input{MAGICPLACEHOLDERGLS}
 %MAGICENDGLS
 
+%setup index
+\indexsetup{level=\chapter*,toclevel=chapter}%,noclearpage
+\makeindex[intoc]%in toc,
+
+
 %\fontencoding{T1}\fontfamily{gill}\fontseries{m}\fontshape{n}\selectfont 
-\providecommand{\thetopic}{}
-\providecommand{\thetopicNoHyphen}{}
+\providecommand{\thetitle}{}
+\providecommand{\thetitleNoHyphen}{}
 %MAGICBEGINTTL
-\renewcommand{\thetopic}{MAGICPLACEHOLDERTTL}%{\confTitle} %\linespread{3}\selectfont 
-\renewcommand{\thetopicNoHyphen}{MAGICPLACEHOLDERTTL}%{\confTitle}
+\renewcommand{\thetitle}{MAGICPLACEHOLDERXTL}%{\confTitle} %\linespread{3}\selectfont 
+\renewcommand{\thetitleNoHyphen}{MAGICPLACEHOLDERTTL}%{\confTitle}
 %MAGICENDTTL
 
 % \makeatletter
@@ -81,7 +90,8 @@
 % {
 %	\title[\thetopicNoHyphen]{\thetopic}%\protect\endnotemark[1]
 % }{
-	\title{\thetopic}%\protect\endnotemark[1]
+	\title[\thetitleNoHyphen]{\thetitle}%\protect\endnotemark[1]
+	% \title{\thetopic}%\protect\endnotemark[1]
 % }
 % \makeatother
 
@@ -130,8 +140,8 @@
 
 \begin{document}
 	%\linenumbers
-	%\myfrontmatter
-	\mytitle
+	\amFrontMatter
+	\amBookTitle{}
 % \layout
 	% \newcommand{\bthinlay}{
 	% 	  \cleardoublepage%
@@ -201,7 +211,7 @@
 %   {\end{tcolorbox}} 
 
 % \tableofcontents
-\mainmatter %this fixes running headers
+\amMainMatter%this fixes running headers
 
 
 %MAGICBEGINSRC
@@ -217,6 +227,7 @@
 
 
 %\printnoidxglossary
+\amBackMatter %this fixes running headers
 
 \end{document}
 
